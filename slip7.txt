@@ -51,13 +51,13 @@ question 1:
 
 question 2:
 
-// Import the events module
+
 const events = require('events');
 
-// Create an event emitter object
+
 const eventEmitter = new events.EventEmitter();
 
-// Event listener (callback) functions
+
 function onStart() {
   console.log("The application has started.");
 }
@@ -70,12 +70,10 @@ function onEnd() {
   console.log("The application has ended.");
 }
 
-// Register the events and bind to callbacks
 eventEmitter.on('start', onStart);
 eventEmitter.on('data', onDataReceived);
 eventEmitter.on('end', onEnd);
 
-// Simulate a main loop that emits events
 console.log("Main loop started...");
 
 setTimeout(() => {

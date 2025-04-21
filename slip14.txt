@@ -67,7 +67,6 @@ question 2:
       const dobDate = new Date(dob);
       const joiningDateObj = new Date(joiningDate);
 
-      // Validate DOB: Employee must be at least 18 years old
       const age = today.getFullYear() - dobDate.getFullYear();
       const month = today.getMonth() - dobDate.getMonth();
       if (month < 0 || (month === 0 && today.getDate() < dobDate.getDate())) {
@@ -78,13 +77,11 @@ question 2:
         return false;
       }
 
-      // Validate Joining Date: Can't be a future date
       if (joiningDateObj > today) {
         alert("Joining Date cannot be a future date.");
         return false;
       }
 
-      // Validate Salary: Must be greater than 0
       if (isNaN(salary) || salary <= 0) {
         alert("Salary must be a positive number greater than 0.");
         return false;
