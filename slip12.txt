@@ -1,0 +1,125 @@
+slip 12:
+
+
+// Import MongoClient from mongodb
+const { MongoClient } = require('mongodb');
+
+// Connection URL and DB details
+const url = "mongodb://localhost:27017";
+const dbName = "mydb"; // Replace with your actual DB name
+const client = new MongoClient(url);
+
+// Main function to run the query
+async function fetchCustomers() {
+  try {
+    // Connect to MongoDB
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const db = client.db(dbName);
+    const collection = db.collection("customers");
+
+    // Fetch all documents
+    const customers = await collection.find({}).toArray();
+
+    // Display results
+    console.log("Customer Records:");
+    console.log(customers);
+  } catch (err) {
+    console.error("Error:", err);
+  } finally {
+    // Always close the connection
+    await client.close();
+  }
+}
+
+// Execute function
+fetchCustomers();
+
+--------------------------------------------------------
+
+question2 :
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, select, button {
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Feedback Form</h2>
+  <form onsubmit="return validateForm()">
+    <label>Name:</label><br>
+    <input type="text" id="name"><br>
+
+    <label>Email ID:</label><br>
+    <input type="text" id="email"><br>
+
+    <label>Mobile No.:</label><br>
+    <input type="text" id="mobile"><br>
+
+    <label>Feedback:</label><br>
+    <select id="feedback">
+      <option value="">--Select Feedback--</option>
+      <option value="Not Good">Not Good</option>
+      <option value="Good">Good</option>
+      <option value="Very Good">Very Good</option>
+      <option value="Excellent">Excellent</option>
+    </select><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const feedback = document.getElementById("feedback").value;
+
+      const nameRegex = /^[A-Za-z\s]{3,}$/;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+      const mobileRegex = /^[6-9]\d{9}$/;
+
+      if (!nameRegex.test(name)) {
+        alert("Enter a valid name (minimum 3 letters, alphabets only)");
+        return false;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert("Enter a valid email address");
+        return false;
+      }
+
+      if (!mobileRegex.test(mobile)) {
+        alert("Enter a valid 10-digit mobile number starting with 6-9");
+        return false;
+      }
+
+      if (feedback === "") {
+        alert("Please select feedback");
+        return false;
+      }
+
+      alert("Feedback submitted successfully!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>

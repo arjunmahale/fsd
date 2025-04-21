@@ -1,0 +1,97 @@
+slip7:
+
+question 1:
+
+
+<!DOCTYPE html>
+<html ng-app="dateTimeApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Date and Time</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body ng-controller="DateTimeController">
+
+    <h2>Current Date and Time</h2>
+    <p>{{ currentTime }}</p>
+
+    <script>
+        angular.module('dateTimeApp', [])
+        .controller('DateTimeController', function($scope, $interval) {
+            $scope.updateTime = function() {
+                const now = new Date();
+                $scope.currentTime = now.toLocaleString(); // shows date and time
+            };
+
+            // update time immediately
+            $scope.updateTime();
+
+            // update every 1000 ms (1 second)
+            $interval($scope.updateTime, 1000);
+        });
+    </script>
+</body>
+</html>
+
+
+-------------------------------------------------------------------------------------
+
+question 2:
+
+// Import the events module
+const events = require('events');
+
+// Create an event emitter object
+const eventEmitter = new events.EventEmitter();
+
+// Event listener (callback) functions
+function onStart() {
+  console.log("The application has started.");
+}
+
+function onDataReceived(data) {
+  console.log("Data received:", data);
+}
+
+function onEnd() {
+  console.log("The application has ended.");
+}
+
+// Register the events and bind to callbacks
+eventEmitter.on('start', onStart);
+eventEmitter.on('data', onDataReceived);
+eventEmitter.on('end', onEnd);
+
+// Simulate a main loop that emits events
+console.log("Main loop started...");
+
+setTimeout(() => {
+  eventEmitter.emit('start'); // Trigger start event
+
+  setTimeout(() => {
+    eventEmitter.emit('data', 'Hello from event loop!'); // Trigger data event
+
+    setTimeout(() => {
+      eventEmitter.emit('end'); // Trigger end event
+    }, 1000);
+
+  }, 1000);
+
+}, 1000);
+
+
+
+===========================================================================================

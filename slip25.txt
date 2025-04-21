@@ -1,0 +1,71 @@
+slip25:
+
+question 1:
+
+<!DOCTYPE html>
+<html ng-app="locationApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Current Page Location</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module('locationApp', []);
+
+    app.controller('LocationController', function($scope, $location) {
+      $scope.currentUrl = $location.absUrl();
+    });
+  </script>
+</head>
+<body ng-controller="LocationController">
+
+  <h2>AngularJS - Current Page Location</h2>
+  <p><strong>URL:</strong> {{ currentUrl }}</p>
+
+</body>
+</html>
+
+------------------------------------------------------------------------
+
+question 2:
+
+
+// Import the events module
+const events = require('events');
+
+// Create an event emitter object
+const eventEmitter = new events.EventEmitter();
+
+// Event listener (callback) functions
+function onStart() {
+  console.log("The application has started.");
+}
+
+function onDataReceived(data) {
+  console.log("Data received:", data);
+}
+
+function onEnd() {
+  console.log("The application has ended.");
+}
+
+// Register the events and bind to callbacks
+eventEmitter.on('start', onStart);
+eventEmitter.on('data', onDataReceived);
+eventEmitter.on('end', onEnd);
+
+// Simulate a main loop that emits events
+console.log("Main loop started...");
+
+setTimeout(() => {
+  eventEmitter.emit('start'); // Trigger start event
+
+  setTimeout(() => {
+    eventEmitter.emit('data', 'Hello from event loop!'); // Trigger data event
+
+    setTimeout(() => {
+      eventEmitter.emit('end'); // Trigger end event
+    }, 1000);
+
+  }, 1000);
+
+}, 1000);

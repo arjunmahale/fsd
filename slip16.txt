@@ -1,0 +1,104 @@
+slip 16:
+
+question 1:
+
+const express = require('express');
+const app = express();
+
+// Set the port
+const PORT = 3000;
+
+// Hardcoded list of recipes
+const recipes = [
+  {
+    name: 'Spaghetti Bolognese',
+    ingredients: ['spaghetti', 'ground beef', 'tomato sauce', 'onions', 'garlic'],
+    instructions: 'Boil spaghetti, cook beef with onions and garlic, add tomato sauce, and serve together.'
+  },
+  {
+    name: 'Chocolate Cake',
+    ingredients: ['flour', 'cocoa powder', 'sugar', 'eggs', 'butter'],
+    instructions: 'Mix ingredients, bake in preheated oven at 350°F for 30 minutes.'
+  },
+  {
+    name: 'Caesar Salad',
+    ingredients: ['lettuce', 'croutons', 'Caesar dressing', 'parmesan cheese'],
+    instructions: 'Toss lettuce and croutons with dressing, top with parmesan.'
+  }
+];
+
+// Set up a simple route to render recipes
+app.get('/', (req, res) => {
+  let recipeList = '<h1>Simple Recipe Book</h1><ul>';
+  
+  recipes.forEach(recipe => {
+    recipeList += `
+      <li>
+        <h2>${recipe.name}</h2>
+        <h3>Ingredients:</h3>
+        <ul>
+          ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+        </ul>
+        <h3>Instructions:</h3>
+        <p>${recipe.instructions}</p>
+      </li>
+    `;
+  });
+
+  recipeList += '</ul>';
+  res.send(recipeList);
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
+
+
+-----------------------------------------------
+
+question 2:
+
+// Import the events module
+const events = require('events');
+
+// Create an event emitter object
+const eventEmitter = new events.EventEmitter();
+
+// Event listener (callback) functions
+function onStart() {
+  console.log("The application has started.");
+}
+
+function onDataReceived(data) {
+  console.log("Data received:", data);
+}
+
+function onEnd() {
+  console.log("The application has ended.");
+}
+
+// Register the events and bind to callbacks
+eventEmitter.on('start', onStart);
+eventEmitter.on('data', onDataReceived);
+eventEmitter.on('end', onEnd);
+
+// Simulate a main loop that emits events
+console.log("Main loop started...");
+
+setTimeout(() => {
+  eventEmitter.emit('start'); // Trigger start event
+
+  setTimeout(() => {
+    eventEmitter.emit('data', 'Hello from event loop!'); // Trigger data event
+
+    setTimeout(() => {
+      eventEmitter.emit('end'); // Trigger end event
+    }, 1000);
+
+  }, 1000);
+
+}, 1000);
+=====================================================================

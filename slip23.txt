@@ -1,0 +1,43 @@
+slip23 :
+
+question 1:
+
+const http=require("http");
+
+const fs=require("fs");
+
+const server=http.createServer((req,res)=>{
+    fs.readFile("index.html",(error,data)=>{
+        res.end(data);
+    });
+  
+})
+
+server.listen(3000);
+
+
+----------------------------------------------------------
+
+question 2:
+
+module5.js->>>>>>>>>>>>>
+
+function getdateandtime(){
+    const now =new Date();
+    return now;
+}
+
+module.exports={
+    getdateandtime
+}
+
+app.js->>>>>>>>
+
+const http = require("http");
+const time=require("./module5");
+
+const server=http.createServer((req,res)=>{
+    res.end("this is current time and date"+time.getdateandtime());
+})
+
+server.listen(3000);

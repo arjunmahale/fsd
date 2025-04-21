@@ -1,0 +1,89 @@
+slip1
+
+question 1->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       function validateform(){
+        let email=document.getElementById("email").value;
+        let password=document.getElementById("password").value;
+
+        emailFormat=/^[a-z A-Z 0-9]+@[a-z A-Z]+\.[a-z A-z]{3,}$/;
+        passFormat=/^[a-zA-Z0-9]{4,}$/;
+
+        if(!emailFormat.test(email))
+       {
+            alert("enter valid email");       }
+       else if(!passFormat.test(password))
+       {
+            alert("enter valid password");
+       }
+       else{
+       alert("you have successfully logged in");
+       }
+       }
+
+
+    </script>
+</head>
+<body>
+    <form onsubmit="return validateform()" >
+            <input type="email" id="email"><br><br>
+            <input type="password" id="password"><br><br>
+            <button type="submit">submit</button>
+    </form>
+</body>
+</html>
+------------------------------------------------------------------------------------------
+question 2->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        function validateform(){
+
+            let fname=document.getElementById("fname").value;
+            let lname=document.getElementById("lname").value;
+            let age=document.getElementById("age").value;
+
+            nameFormat=/^[a-zA-Z]{2,}$/;
+            if(!nameFormat.test(fname)){
+                alert("enter valid first name");
+            }
+            else if(!nameFormat.test(lname))
+            {
+                alert("enter valid lname ");
+            }
+            else if(18>age>50)
+            {
+                alert("enter valid age");
+
+            }
+            else{
+                alert("registration successfull.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return validateform()">
+
+        <input type="text" id="fname"><br><br>
+        <input type="text" id="lname"><br><br>
+        <input type="number" id="age"><br><br>
+        <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,85 @@
+slip5:
+
+question 1->
+
+const http=require("http");
+
+http.createServer((req,res)=>{
+    res.end(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <b><i><u> <h1 style="font-size: 100px;">hello you are welcome</h1></u></i></b>
+<form onsubmit="return upload()">
+  <input type="file" name="file" id="file">
+  <button type="submit">submit</button>
+  </form>
+
+  <script>
+        function upload(){
+        alert("file uploaded successfully");
+        }
+  </script>
+</body>
+</html>`)
+}).listen(3000);
+
+--------------------------------------------------------------------------
+quesstion2->
+
+<!DOCTYPE html>
+<html ng-app="validationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Username Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="ValidationController" style="font-family: Arial; padding: 20px;">
+
+    <h2>AngularJS Username & Password Validation</h2>
+
+    <form ng-submit="validateForm()">
+        <label><strong>Username:</strong></label><br>
+        <input type="text" ng-model="username" placeholder="Enter username"><br><br>
+
+        <label><strong>Password:</strong></label><br>
+        <input type="password" ng-model="password" placeholder="Enter password"><br><br>
+
+        <button type="submit">Validate</button>
+    </form>
+
+    <p style="color: green;" ng-if="message">{{ message }}</p>
+
+    <script>
+        angular.module('validationApp', [])
+        .controller('ValidationController', function($scope) {
+            $scope.validateForm = function() {
+                $scope.message = "";
+
+                if (!$scope.username || $scope.username.trim() === "") {
+                    alert("Enter username");
+                    return;
+                }
+
+                if ($scope.username.length < 3) {
+                    alert("Username is too short");
+                    return;
+                }
+
+                if (!$scope.password || $scope.password.length < 8) {
+                    alert("Password must be at least 8 characters");
+                    return;
+                }
+
+                $scope.message = "Valid username";
+            };
+        });
+    </script>
+</body>
+</html>
+
+============================================================================================================

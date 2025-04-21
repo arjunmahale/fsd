@@ -1,0 +1,99 @@
+slip 14:
+
+question 1:
+
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello! This is a simple Node.js web server.');
+});
+
+server.listen(3000, () => {
+  console.log('Server running at http://localhost:3000/');
+});
+
+
+----------------------------------------------------------------
+
+question 2:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Employee Registration Form</h2>
+
+  <form onsubmit="return validateForm()">
+    <label>Date of Birth:</label><br>
+    <input type="date" id="dob"><br>
+
+    <label>Joining Date:</label><br>
+    <input type="date" id="joiningDate"><br>
+
+    <label>Salary:</label><br>
+    <input type="number" id="salary" step="0.01"><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const dob = document.getElementById("dob").value;
+      const joiningDate = document.getElementById("joiningDate").value;
+      const salary = parseFloat(document.getElementById("salary").value);
+
+      const today = new Date();
+      const dobDate = new Date(dob);
+      const joiningDateObj = new Date(joiningDate);
+
+      // Validate DOB: Employee must be at least 18 years old
+      const age = today.getFullYear() - dobDate.getFullYear();
+      const month = today.getMonth() - dobDate.getMonth();
+      if (month < 0 || (month === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+      }
+      if (age < 18) {
+        alert("Employee must be at least 18 years old.");
+        return false;
+      }
+
+      // Validate Joining Date: Can't be a future date
+      if (joiningDateObj > today) {
+        alert("Joining Date cannot be a future date.");
+        return false;
+      }
+
+      // Validate Salary: Must be greater than 0
+      if (isNaN(salary) || salary <= 0) {
+        alert("Salary must be a positive number greater than 0.");
+        return false;
+      }
+
+      alert("Registration successful!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
